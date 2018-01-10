@@ -52,6 +52,7 @@ const Layout = (
     isEditable,
     onEditCell,
     autoRefresh,
+    annotations,
     manualRefresh,
     onDeleteCell,
     synchronizer,
@@ -83,11 +84,13 @@ const Layout = (
           sources={sources}
           timeRange={timeRange}
           templates={templates}
+          annotations={annotations}
           autoRefresh={autoRefresh}
-          manualRefresh={manualRefresh}
           synchronizer={synchronizer}
-          grabDataForDownload={grabDataForDownload}
           resizeCoords={resizeCoords}
+          manualRefresh={manualRefresh}
+          grabDataForDownload={grabDataForDownload}
+          manualRefresh={manualRefresh}
           queries={buildQueriesForLayouts(
             cell,
             getSource(cell, source, sources, defaultSource),
@@ -104,6 +107,7 @@ Layout.contextTypes = {
 }
 
 const propTypes = {
+  annotations: arrayOf(shape({})),
   autoRefresh: number.isRequired,
   manualRefresh: number,
   timeRange: shape({

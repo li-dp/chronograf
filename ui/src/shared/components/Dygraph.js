@@ -42,10 +42,10 @@ export default class Dygraph extends Component {
 
   componentDidMount() {
     const {
+      options,
+      isBarGraph,
       axes: {y, y2},
       isGraphFilled: fillGraph,
-      isBarGraph,
-      options,
     } = this.props
 
     const timeSeries = this.getTimeSeries()
@@ -97,11 +97,30 @@ export default class Dygraph extends Component {
 
     const {w} = this.dygraph.getArea()
     this.props.setResolution(w)
+    this.annotate()
 
     // Simple opt-out for now, if a graph should not be synced
     if (this.props.synchronizer) {
       this.sync()
     }
+  }
+
+  annotate = () => {
+    const {dygraphSeries, annotations = []} = this.props
+    const {h} = this.dygraph.getArea()
+
+    const series = Object.keys(dygraphSeries)[0] // TODO make this not brittle
+    const annos = annotations.map(({time, text}) => ({
+      x: time,
+      text,
+      attachAtBottom: true,
+      series,
+      tickColor: 'rgba(255, 0, 0, 1)',
+      tickWidth: 2,
+      tickHeight: h,
+    }))
+
+    this.dygraph.setAnnotations(annos)
   }
 
   componentWillUnmount() {
@@ -128,7 +147,6 @@ export default class Dygraph extends Component {
 
   componentDidUpdate() {
     const {labels, axes: {y, y2}, options, isBarGraph} = this.props
-
     const dygraph = this.dygraph
     if (!dygraph) {
       throw new Error(
@@ -167,6 +185,7 @@ export default class Dygraph extends Component {
 
     const {w} = this.dygraph.getArea()
     this.props.setResolution(w)
+    this.annotate()
     this.resize()
   }
 
@@ -394,19 +413,19 @@ export default class Dygraph extends Component {
       <div className="dygraph-child" onMouseLeave={this.deselectCrosshair}>
         <DygraphLegend
           {...legend}
-          graph={this.graphRef}
-          legend={this.legendRef}
           pageX={this.pageX}
           sortType={sortType}
-          onHide={this.handleHideLegend}
           isHidden={isHidden}
-          isFilterVisible={isFilterVisible}
+          graph={this.graphRef}
           isSnipped={isSnipped}
+          legend={this.legendRef}
           filterText={filterText}
           isAscending={isAscending}
           onSnip={this.handleSnipLabel}
+          onHide={this.handleHideLegend}
           onSort={this.handleSortLegend}
           legendRef={this.handleLegendRef}
+          isFilterVisible={isFilterVisible}
           onToggleFilter={this.handleToggleFilter}
           onInputChange={this.handleLegendInputChange}
         />

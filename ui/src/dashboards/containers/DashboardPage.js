@@ -319,6 +319,37 @@ class DashboardPage extends Component {
       link: `/sources/${sourceID}/dashboards/${d.id}`,
     }))
 
+    const annotations = [
+      {
+        type: 'foo',
+        id: '1',
+        time: '1515461059000',
+        duration: '0',
+        text: 'im an annotation',
+      },
+      {
+        type: 'foo',
+        id: '1',
+        time: '1515477635000',
+        duration: '0',
+        text: 'im another annotation',
+      },
+      {
+        type: 'foo',
+        id: '1',
+        time: '1515504053000',
+        duration: '0',
+        text: 'and another',
+      },
+      {
+        type: 'foo',
+        id: '1',
+        time: '1515530730000',
+        duration: '0',
+        text: 'i love annotations',
+      },
+    ]
+
     return (
       <div className="page">
         {isTemplating
@@ -375,6 +406,7 @@ class DashboardPage extends Component {
               sources={sources}
               dashboard={dashboard}
               timeRange={timeRange}
+              annotations={annotations}
               autoRefresh={autoRefresh}
               manualRefresh={manualRefresh}
               onZoom={this.handleZoomedTimeRange}

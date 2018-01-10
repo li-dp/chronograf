@@ -13,6 +13,7 @@ const Dashboard = ({
   onAddCell,
   timeRange,
   autoRefresh,
+  annotations,
   manualRefresh,
   onDeleteCell,
   synchronizer,
@@ -57,6 +58,7 @@ const Dashboard = ({
               sources={sources}
               isEditable={true}
               timeRange={timeRange}
+              annotations={annotations}
               autoRefresh={autoRefresh}
               manualRefresh={manualRefresh}
               synchronizer={synchronizer}
@@ -79,6 +81,7 @@ const Dashboard = ({
 const {arrayOf, bool, func, shape, string, number} = PropTypes
 
 Dashboard.propTypes = {
+  annotations: arrayOf(shape({})),
   dashboard: shape({
     templates: arrayOf(
       shape({

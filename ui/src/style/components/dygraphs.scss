@@ -299,3 +299,12 @@
 .sort-btn--bottom {
   bottom: -6px;
 }
+
+/* Annotations */
+.dygraph-annotation.dygraphDefaultAnnotation.dygraph-default-annotation {
+  position: absolute;
+  background: none !important;
+  border: 8px solid transparent !important;
+  border-top-color: red !important;
+  transform: translateY(8px);
+}
