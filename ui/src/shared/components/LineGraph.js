@@ -136,6 +136,7 @@ LineGraph.defaultProps = {
 }
 
 LineGraph.propTypes = {
+  annotations: arrayOf(shape({})),
   axes: shape({
     y: shape({
       bounds: array,

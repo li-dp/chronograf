@@ -98,6 +98,7 @@ const RefreshingGraph = ({
 const {arrayOf, func, number, shape, string} = PropTypes
 
 RefreshingGraph.propTypes = {
+  annotations: arrayOf(shape({})),
   timeRange: shape({
     lower: string.isRequired,
   }),

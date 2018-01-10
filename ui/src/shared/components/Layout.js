@@ -90,7 +90,6 @@ const Layout = (
           resizeCoords={resizeCoords}
           manualRefresh={manualRefresh}
           grabDataForDownload={grabDataForDownload}
-          manualRefresh={manualRefresh}
           queries={buildQueriesForLayouts(
             cell,
             getSource(cell, source, sources, defaultSource),

@@ -483,6 +483,7 @@ Dygraph.propTypes = {
   isGraphFilled: bool,
   isBarGraph: bool,
   overrideLineColors: array,
+  annotations: arrayOf(shape({})),
   dygraphSeries: shape({}).isRequired,
   ruleValues: shape({
     operator: string,
